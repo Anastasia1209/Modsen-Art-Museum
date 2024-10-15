@@ -1,9 +1,10 @@
 .searchBarContainer {
 	text-align: center;
 	margin-top: 50px;
-	/* display: flex;
-	justify-content: space-between;
-	align-items: center; */
+	margin-bottom: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .heading {
