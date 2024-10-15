@@ -1,0 +1,29 @@
+.FavoritesPage {
+	background: #fafafa;
+}
+.content {
+	padding: 20px;
+	text-align: center;
+	color: #333;
+}
+
+p {
+	font-size: 64px;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+.highlight {
+	color: #f17900;
+	font-size: 64px;
+	font-weight: 700;
+}
+.bookmarkContainer {
+	display: flex;
+	align-items: center;
+	margin-left: 37%;
+}
+
+.bookmark {
+	margin-right: 8px;
+	margin-top: 12px;
+}
