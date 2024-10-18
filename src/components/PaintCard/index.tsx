@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import styles from './PaintCard.module.css';
+import React from 'react';
 import { Link } from 'react-router-dom';
+
+import styles from './PaintCard.module.css';
 import { PaintCardProps } from '../../types/types';
-import bookmark from '../../assets/icons/emptyFav.svg';
-import filledBookmark from '../../assets/icons/fullFav.svg';
+import { emptyFav, filledBookmark } from '../../assets/assets';
+import useFavorites from '../../hooks/useFavorites';
 
 const PaintCard: React.FC<PaintCardProps> = ({
 	id,
@@ -12,29 +13,18 @@ const PaintCard: React.FC<PaintCardProps> = ({
 	imageUrl,
 	status,
 }) => {
-	const [isFavorite, setIsFavorite] = useState(false);
-
-	useEffect(() => {
-		const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-		setIsFavorite(favorites.some((fav: { id: number }) => fav.id === id));
-	}, [id]);
+	const { isFavorite, toggleFavorite } = useFavorites(
+		id,
+		title,
+		author,
+		imageUrl,
+		status
+	);
 
 	const handleFavoriteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-		event.stopPropagation();
 		event.preventDefault();
-
-		let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-
-		if (isFavorite) {
-			favorites = favorites.filter((fav: { id: number }) => fav.id !== id);
-			setIsFavorite(false);
-		} else {
-			const newFavorite = { id, title, author, imageUrl, status };
-			favorites.push(newFavorite);
-			setIsFavorite(true);
-		}
-
-		localStorage.setItem('favorites', JSON.stringify(favorites));
+		event.stopPropagation();
+		toggleFavorite();
 	};
 
 	return (
@@ -46,9 +36,10 @@ const PaintCard: React.FC<PaintCardProps> = ({
 					<p className={styles.author}>{author}</p>
 					<p className={styles.status}>{status}</p>
 				</div>
+
 				<button className={styles.favoriteButton} onClick={handleFavoriteClick}>
 					<img
-						src={isFavorite ? filledBookmark : bookmark}
+						src={isFavorite ? filledBookmark : emptyFav}
 						alt="favorites"
 						className={styles.imgInRound}
 					/>

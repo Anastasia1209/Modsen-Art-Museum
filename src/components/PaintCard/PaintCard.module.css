@@ -3,16 +3,17 @@
 	color: inherit;
 	cursor: pointer;
 }
+
 .card {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 8px; /* Уменьшены отступы */
+	padding: 8px;
 	background-color: #fff;
 	border: 1px solid #f0f1f1;
 	margin: 16px;
 	transition: box-shadow 0.3s ease;
-	width: 400px; /* Установите фиксированную ширину */
+	width: 400px;
 	height: 110px;
 }
 
@@ -31,6 +32,7 @@
 	flex-grow: 1;
 	margin-left: 20px;
 	overflow: hidden;
+	width: 200px;
 }
 
 .title {

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import styles from './GalaryCard.module.css';
+import React from 'react';
 import { Link } from 'react-router-dom';
+
+import styles from './GalaryCard.module.css';
 import { PaintCardProps } from '../../types/types';
-import bookmark from '../../assets/icons/emptyFav.svg';
-import filledBookmark from '../../assets/icons/fullFav.svg';
+import { emptyFav, filledBookmark } from '../../assets/assets';
+import useFavorites from '../../hooks/useFavorites';
 
 const GalleryCard: React.FC<PaintCardProps> = ({
 	id,
@@ -12,29 +13,17 @@ const GalleryCard: React.FC<PaintCardProps> = ({
 	status,
 	imageUrl,
 }) => {
-	const [isFavorite, setIsFavorite] = useState(false);
-
-	useEffect(() => {
-		const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-		setIsFavorite(favorites.some((fav: { id: number }) => fav.id === id));
-	}, [id]);
-
+	const { isFavorite, toggleFavorite } = useFavorites(
+		id,
+		title,
+		author,
+		imageUrl,
+		status
+	);
 	const handleFavoriteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-		event.stopPropagation();
 		event.preventDefault();
-
-		let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-
-		if (isFavorite) {
-			favorites = favorites.filter((fav: { id: number }) => fav.id !== id);
-			setIsFavorite(false);
-		} else {
-			const newFavorite = { id, title, author, imageUrl, status };
-			favorites.push(newFavorite);
-			setIsFavorite(true);
-		}
-
-		localStorage.setItem('favorites', JSON.stringify(favorites));
+		event.stopPropagation();
+		toggleFavorite();
 	};
 
 	return (
@@ -52,7 +41,7 @@ const GalleryCard: React.FC<PaintCardProps> = ({
 						onClick={handleFavoriteClick}
 					>
 						<img
-							src={isFavorite ? filledBookmark : bookmark}
+							src={isFavorite ? filledBookmark : emptyFav}
 							alt="favorites"
 							className={styles.imgInRound}
 						/>
