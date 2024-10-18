@@ -3,6 +3,7 @@ import styles from './SearchBar.module.css';
 import search from '../../assets/icons/search.svg';
 import { Paint } from '../../types/types';
 import { getPaintsSearch } from '../../services/api';
+import { searchValidationSchema } from '../../validation/validationSchema';
 
 interface SearchBarProps {
 	setSearchResults: (results: Paint[] | null) => void;
@@ -12,18 +13,26 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearchResults }) => {
 	const [query, setQuery] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	const [validationError, setValidationError] = useState<string | null>(null);
 
 	const handleSearch = async () => {
 		if (!query) return;
 
 		try {
+			await searchValidationSchema.validate({ query });
+			setValidationError(null);
+
 			setLoading(true);
 			setError(null);
 
 			const data: Paint[] = await getPaintsSearch(query);
 			setSearchResults(data);
 		} catch (error: any) {
-			setError(error.message || 'Ошибка при выполнении поиска');
+			if (error.name === 'ValidationError') {
+				setValidationError(error.message);
+			} else {
+				setError('Ошибка при выполнении поиска');
+			}
 		} finally {
 			setLoading(false);
 		}
@@ -43,10 +52,11 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearchResults }) => {
 					<img src={search} alt="Search Icon" className={styles.icon} />
 				</button>
 			</div>
-
-			{loading && <p>Loading...</p>}
-
-			{error && <p className={styles.error}>{error}</p>}
+			<div className={styles.messages}>
+				{loading && <p className={styles.loading}>Loading...</p>}
+				{validationError && <p className={styles.error}>{validationError}</p>}
+				{error && <p className={styles.error}>{error}</p>}
+			</div>
 		</div>
 	);
 };

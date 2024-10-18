@@ -3,6 +3,7 @@
 	margin-top: 50px;
 	margin-bottom: 50px;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
@@ -15,12 +16,24 @@
 }
 
 .searchBox {
-	display: inline-flex;
+	display: flex;
 	align-items: center;
 	background: #3939390d;
 	border-radius: 16px;
 	padding: 10px 20px;
-	width: 760px;
+	width: 100%;
+	max-width: 760px;
+	box-sizing: border-box;
+}
+.messages {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.loading,
+.error {
+	font-size: 14px;
+	font-weight: 300;
 }
 
 .input {
