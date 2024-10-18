@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
+
 import styles from './SearchBar.module.css';
-import search from '../../assets/icons/search.svg';
-import { Paint } from '../../types/types';
+import { search } from '../../assets/assets';
+import { Paint, SearchBarProps } from '../../types/types';
 import { getPaintsSearch } from '../../services/api';
 import { searchValidationSchema } from '../../validation/validationSchema';
-
-interface SearchBarProps {
-	setSearchResults: (results: Paint[] | null) => void;
-}
 
 export const SearchBar: React.FC<SearchBarProps> = ({ setSearchResults }) => {
 	const [query, setQuery] = useState('');
