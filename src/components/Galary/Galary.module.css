@@ -24,6 +24,11 @@
 	justify-content: center;
 	gap: 60px;
 }
+@media (max-width: 600px) {
+	.cards {
+		gap: 20px;
+	}
+}
 
 .pagination {
 	display: flex;
@@ -49,7 +54,7 @@
 	background-color: #f17900;
 }
 .pageButton.active {
-	background-color: #f17900; /* Цвет для активной кнопки */
+	background-color: #f17900;
 	color: white;
 	font-size: 18px;
 	font-weight: 600;
@@ -58,10 +63,6 @@
 .pageButton:disabled {
 	background-color: #ddd;
 	cursor: not-allowed;
-}
-
-.pageButton:hover {
-	background-color: #f17900;
 }
 
 .nextButton {

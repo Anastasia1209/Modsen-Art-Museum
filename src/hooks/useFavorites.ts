@@ -1,4 +1,3 @@
-// src/hooks/useFavorites.ts
 import { useEffect, useState } from 'react';
 
 const useFavorites = (id: number, title: string, author: string, imageUrl: string, status: string) => {

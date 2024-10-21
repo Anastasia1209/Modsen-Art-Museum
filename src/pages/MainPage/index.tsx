@@ -9,7 +9,7 @@ import Pagination from '@components/Pagination';
 
 import styles from './MainPage.module.css';
 
-import { getPaints } from '@utils/api';
+import { getPaints } from '../../utils/api';
 import { Paint } from '@utils/types';
 import ErrorBoundary from '@components/ErrorBoundary';
 
@@ -17,7 +17,6 @@ const MainPage: React.FC = () => {
 	const [artworks, setArtworks] = useState<Paint[]>([]);
 	const [searchResults, setSearchResults] = useState<Paint[] | null>(null);
 	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [error, setError] = useState<string | null>(null);
 
 	const paintingsPerPage = 2;
 	const pagesPerRange = 4;
@@ -33,16 +32,12 @@ const MainPage: React.FC = () => {
 				}
 				// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			} catch (error) {
-				setError('Ошибка при загрузке данных');
+				console.error('Ошибка при загрузке данных');
 			}
 		};
 
 		fetchArtworks();
 	}, []);
-
-	if (error) {
-		return <p>{error}</p>;
-	}
 
 	const paintingsToShow = searchResults ?? artworks;
 	const totalPages = Math.ceil(paintingsToShow.length / paintingsPerPage);

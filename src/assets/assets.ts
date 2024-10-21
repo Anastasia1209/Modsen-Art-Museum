@@ -1,4 +1,3 @@
-// assets.ts
 export { default as home } from './icons/home.svg';
 export { default as bookmark } from './icons/bookmark.svg';
 export { default as burger } from './icons/burger.svg';

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Paint } from '@utils/types';
-import { getPaintsSearch } from '@utils/api';
+import { getPaintsSearch } from '../utils/api';
 import { searchValidationSchema } from '../validation/validationSchema';
+import { ValidationError } from 'yup';
 
 export const useSearch = (setSearchResults: (results: Paint[]) => void) => {
 	const [query, setQuery] = useState('');
@@ -21,8 +22,8 @@ export const useSearch = (setSearchResults: (results: Paint[]) => void) => {
 
 			const data: Paint[] = await getPaintsSearch(query);
 			setSearchResults(sortData(data));
-		} catch (error: any) {
-			if (error.name === 'ValidationError') {
+		} catch (error) {
+			if (error instanceof ValidationError) {
 				setValidationError(error.message);
 			} else {
 				setError('Ошибка при выполнении поиска');

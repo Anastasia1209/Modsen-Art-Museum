@@ -22,7 +22,7 @@ describe('searchValidationSchema', () => {
       .rejects
       .toThrow('Запрос должен содержать минимум 3 символа');
   });
-
+ 
   test('fails validation when query contains invalid characters', async () => {
     const invalidData = { query: 'Invalid@Query!' };
 
