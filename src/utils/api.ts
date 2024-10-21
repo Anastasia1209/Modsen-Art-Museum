@@ -19,9 +19,7 @@ import { ApiArtwork, Artwork, ApiResponse, Paint } from './types';
     try {
       const result: ApiResponse = await fetchByText(query);
   
-      const data: Artwork[] = result.data;
-      console.log('Result from search API:', result);
-  
+      const data: Artwork[] = result.data;  
       const paints: Paint[] = data.map((item) => ({
         id: item.id,
         title: item.title,
@@ -32,7 +30,6 @@ import { ApiArtwork, Artwork, ApiResponse, Paint } from './types';
         status: item.is_on_view ? "Public" : "Private" , 
       }));
   
-      console.log('Paints:', paints);
       return paints;
     } catch (error) {
       console.error('Ошибка при загрузке данных:', error);
@@ -40,7 +37,6 @@ import { ApiArtwork, Artwork, ApiResponse, Paint } from './types';
     }
   };
   
-//////////////////////////
 export const getPaints = async (): Promise<Paint[]> => {
 	try {
 		const response = await fetch(API_BASE_URL);
@@ -48,7 +44,6 @@ export const getPaints = async (): Promise<Paint[]> => {
 			throw new Error('Ошибка при запросе данных');
 		}
         const result = await response.json(); 
-        console.log('Result from search API before:', result);
         const data: ApiArtwork[] = result.data;
 
         const paints: Paint[] = data.map((item) => ({
@@ -58,8 +53,6 @@ export const getPaints = async (): Promise<Paint[]> => {
             imageUrl: `https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`, 
             status: item.is_public_domain ? 'Public' : 'Private',
           }));
-          console.log('Paints before:', paints);
-
 
 		return paints;
 	} catch (error) {

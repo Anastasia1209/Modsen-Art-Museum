@@ -1,5 +1,5 @@
 import React from 'react';
-///////
+
 import styles from './SearchBar.module.css';
 import { search } from '@assets/assets';
 import { SearchBarProps } from '@utils/types';

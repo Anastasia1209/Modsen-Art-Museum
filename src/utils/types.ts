@@ -61,7 +61,7 @@ export interface PaginationProps {
 	pagesPerRange: number;
 	onPageChange: (pageNumber: number) => void;
 }
-//
+
 export interface Artwork {
     id: number;
     title: string;
