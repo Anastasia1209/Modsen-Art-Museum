@@ -1,17 +1,22 @@
 import React from 'react';
-import { Header } from '../../components/Header/index';
-import { Footer } from '../../components/Footer/index';
+
+import { Header } from '@components/Header';
+import { Footer } from '@components/Footer';
+import DetailInfo from '@components/DetailInfo';
+
 import styles from './DetailsPage.module.css';
-import DetailInfo from '../../components/DetailInfo';
+import ErrorBoundary from '@components/ErrorBoundary';
 
 const DetailsPage: React.FC = () => {
 	return (
-		<div className={styles.DetailsPage}>
-			<Header />
-			<DetailInfo />
+		<ErrorBoundary>
+			<div className={styles.DetailsPage}>
+				<Header />
+				<DetailInfo />
 
-			<Footer />
-		</div>
+				<Footer />
+			</div>
+		</ErrorBoundary>
 	);
 };
 
