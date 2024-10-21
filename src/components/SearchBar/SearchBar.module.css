@@ -52,3 +52,20 @@
 	cursor: pointer;
 	padding: 5px;
 }
+
+.sortContainer {
+	margin: 20px;
+}
+
+.sortLabel {
+	font-size: 20px;
+	font-weight: 400;
+	margin-right: 10px;
+	color: #393939d4;
+}
+
+.select {
+	border: none;
+	font-size: 18px;
+	color: #393939df;
+}

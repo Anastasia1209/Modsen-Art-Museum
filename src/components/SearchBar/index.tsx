@@ -1,39 +1,22 @@
-import React, { useState } from 'react';
-
+import React from 'react';
+///////
 import styles from './SearchBar.module.css';
 import { search } from '@assets/assets';
-import { Paint, SearchBarProps } from '@utils/types';
-import { getPaintsSearch } from '@utils/api';
-import { searchValidationSchema } from '../../validation/validationSchema';
+import { SearchBarProps } from '@utils/types';
+
+import { useSearch } from '../../hooks/useSearch';
 
 export const SearchBar: React.FC<SearchBarProps> = ({ setSearchResults }) => {
-	const [query, setQuery] = useState('');
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState<string | null>(null);
-	const [validationError, setValidationError] = useState<string | null>(null);
-
-	const handleSearch = async () => {
-		if (!query) return;
-
-		try {
-			await searchValidationSchema.validate({ query });
-			setValidationError(null);
-
-			setLoading(true);
-			setError(null);
-
-			const data: Paint[] = await getPaintsSearch(query);
-			setSearchResults(data);
-		} catch (error: any) {
-			if (error.name === 'ValidationError') {
-				setValidationError(error.message);
-			} else {
-				setError('Ошибка при выполнении поиска');
-			}
-		} finally {
-			setLoading(false);
-		}
-	};
+	const {
+		query,
+		setQuery,
+		loading,
+		error,
+		validationError,
+		sortCriterion,
+		setSortCriterion,
+		handleSearch,
+	} = useSearch(setSearchResults);
 
 	return (
 		<div className={styles.searchBarContainer}>
@@ -49,6 +32,23 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearchResults }) => {
 					<img src={search} alt="Search Icon" className={styles.icon} />
 				</button>
 			</div>
+
+			<div className={styles.sortContainer}>
+				<label className={styles.sortLabel} htmlFor="sort">
+					Sort by:
+				</label>
+				<select
+					id="sort"
+					value={sortCriterion}
+					onChange={(e) => setSortCriterion(e.target.value)}
+					className={styles.select}
+				>
+					<option value="default">Default</option>
+					<option value="title">Title</option>
+					<option value="author">Author</option>
+				</select>
+			</div>
+
 			<div className={styles.messages}>
 				{loading && <p className={styles.loading}>Loading...</p>}
 				{validationError && <p className={styles.error}>{validationError}</p>}
