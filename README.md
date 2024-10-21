@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-Project deploy https://stupendous-profiterole-d0e416.netlify.app/
+# Project deploy https://stupendous-profiterole-d0e416.netlify.app/
 
 ## Available Scripts
 
