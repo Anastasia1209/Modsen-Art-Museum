@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './Pagination.module.css';
-import { PaginationProps } from '../../types/types';
+import { PaginationProps } from '@utils/types';
 
 const Pagination: React.FC<PaginationProps> = ({
 	currentPage,

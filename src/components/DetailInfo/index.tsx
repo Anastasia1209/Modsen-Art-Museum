@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import styles from './DetailInfo.module.css';
-import bookmark from '../../assets/icons/emptyFav.svg';
-import filledBookmark from '../../assets/icons/fullFav.svg';
 
-import { PaintFull } from '../../types/types';
-import { getPaintById } from '../../services/api';
+import styles from './DetailInfo.module.css';
+import { emptyFav, filledBookmark } from '@assets/assets';
+import { PaintFull } from '@utils/types';
+import { getPaintById } from '@utils/api';
+import useFavorites from '../../hooks/useFavorites';
 
 const DetailsPaint: React.FC = () => {
 	const { id } = useParams<{ id: string }>();
 	const [paint, setPaint] = useState<PaintFull | null>(null);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | null>(null);
-	const [isFavorite, setIsFavorite] = useState(false);
 
-	useEffect(() => {
-		const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-		setIsFavorite(favorites.some((fav: PaintFull) => fav.id === Number(id)));
-	}, [id]);
+	const paintId = Number(id);
+	const { isFavorite, toggleFavorite } = useFavorites(
+		paintId,
+		paint?.title || '',
+		paint?.author || '',
+		paint?.imageUrl || '',
+		paint?.status || ''
+	);
 
 	useEffect(() => {
 		const fetchPaint = async () => {
@@ -37,22 +40,6 @@ const DetailsPaint: React.FC = () => {
 		fetchPaint();
 	}, [id]);
 
-	const toggleFavorite = () => {
-		let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-
-		if (isFavorite) {
-			favorites = favorites.filter((fav: PaintFull) => fav.id !== paint?.id);
-			localStorage.setItem('favorites', JSON.stringify(favorites));
-			setIsFavorite(false);
-		} else {
-			if (paint) {
-				favorites.push(paint);
-				localStorage.setItem('favorites', JSON.stringify(favorites));
-				setIsFavorite(true);
-			}
-		}
-	};
-
 	if (loading) {
 		return <div>Loading...</div>;
 	}
@@ -71,7 +58,7 @@ const DetailsPaint: React.FC = () => {
 				<img src={paint.imageUrl} alt={paint.title} className={styles.image} />
 				<button className={styles.bookmarkButton} onClick={toggleFavorite}>
 					<img
-						src={isFavorite ? filledBookmark : bookmark}
+						src={isFavorite ? filledBookmark : emptyFav}
 						alt="Bookmark"
 						className={styles.imgInRound}
 					/>

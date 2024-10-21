@@ -2,7 +2,7 @@ import React from 'react';
 
 import GalleryCard from '../GalaryCard';
 import styles from './Galary.module.css';
-import { GalleryProps } from '../../types/types';
+import { GalleryProps } from '@utils/types';
 
 const Gallery: React.FC<GalleryProps> = ({ paintings }) => {
 	return (

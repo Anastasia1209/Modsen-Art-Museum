@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+
 import styles from './Header.module.css';
-import museum from '../../assets/logo/museum.svg';
-import home from '../../assets/icons/home.svg';
-import bookmark from '../../assets/icons/bookmark.svg';
-import burger from '../../assets/icons/burger.svg';
+import { museum, home, bookmark, burger } from '@assets/assets';
+import { useToggle } from '../../hooks/useToggle';
 
 export const Header: React.FC = () => {
 	const location = useLocation();
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const { isOpen, toggle, close } = useToggle();
 
-	const toggleMenu = () => {
-		setIsMenuOpen(!isMenuOpen);
+	const handleMenuClose = () => {
+		close();
 	};
 
 	return (
@@ -20,13 +19,17 @@ export const Header: React.FC = () => {
 				<img src={museum} alt="Museum of Art" className="logo" />
 			</div>
 
-			<div className={styles.burgerMenu} onClick={toggleMenu}>
-				<img src={isMenuOpen ? burger : burger} alt="Menu" />
+			<div className={styles.burgerMenu} onClick={toggle}>
+				<img src={burger} alt="Menu" />
 			</div>
 
-			<div className={`${styles.headerItems} ${isMenuOpen ? styles.open : ''}`}>
+			<div className={`${styles.headerItems} ${isOpen ? styles.open : ''}`}>
 				{location.pathname !== '/' && (
-					<Link to="/" className={styles['header-item']}>
+					<Link
+						to="/"
+						className={styles['header-item']}
+						onClick={handleMenuClose}
+					>
 						<img src={home} alt="home" className="logo" />
 						<span className={styles.title}>Home</span>
 					</Link>

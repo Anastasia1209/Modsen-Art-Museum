@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 import styles from './SearchBar.module.css';
-import { search } from '../../assets/assets';
-import { Paint, SearchBarProps } from '../../types/types';
-import { getPaintsSearch } from '../../services/api';
+import { search } from '@assets/assets';
+import { Paint, SearchBarProps } from '@utils/types';
+import { getPaintsSearch } from '@utils/api';
 import { searchValidationSchema } from '../../validation/validationSchema';
 
 export const SearchBar: React.FC<SearchBarProps> = ({ setSearchResults }) => {

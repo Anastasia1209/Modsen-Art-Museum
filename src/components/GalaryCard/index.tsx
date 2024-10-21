@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './GalaryCard.module.css';
-import { PaintCardProps } from '../../types/types';
-import { emptyFav, filledBookmark } from '../../assets/assets';
+import { PaintCardProps } from '@utils/types';
+import { emptyFav, filledBookmark } from '@assets/assets';
 import useFavorites from '../../hooks/useFavorites';
 
 const GalleryCard: React.FC<PaintCardProps> = ({
