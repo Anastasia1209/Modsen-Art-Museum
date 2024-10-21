@@ -1,9 +1,11 @@
 .searchBarContainer {
 	text-align: center;
 	margin-top: 50px;
-	/* display: flex;
-	justify-content: space-between;
-	align-items: center; */
+	margin-bottom: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .heading {
@@ -14,12 +16,24 @@
 }
 
 .searchBox {
-	display: inline-flex;
+	display: flex;
 	align-items: center;
 	background: #3939390d;
 	border-radius: 16px;
 	padding: 10px 20px;
-	width: 760px;
+	width: 100%;
+	max-width: 760px;
+	box-sizing: border-box;
+}
+.messages {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.loading,
+.error {
+	font-size: 14px;
+	font-weight: 300;
 }
 
 .input {
@@ -37,4 +51,22 @@
 	border: none;
 	cursor: pointer;
 	padding: 5px;
+}
+
+.sortContainer {
+	margin: 20px;
+}
+
+.sortLabel {
+	font-size: 20px;
+	font-weight: 400;
+	margin-right: 10px;
+	color: #393939d4;
+}
+
+.select {
+	border: none;
+	font-size: 18px;
+	color: #393939df;
+	background: #fafafa;
 }

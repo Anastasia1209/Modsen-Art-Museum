@@ -1,18 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import styles from './PaintCard.module.css';
+import styles from './GalaryCard.module.css';
 import { PaintCardProps } from '@utils/types';
 import { emptyFav, filledBookmark } from '@assets/assets';
 import defaultImg from '@assets/Image.svg';
 import useFavorites from '../../hooks/useFavorites';
 
-const PaintCard: React.FC<PaintCardProps> = ({
+const GalleryCard: React.FC<PaintCardProps> = ({
 	id,
 	title,
 	author,
-	imageUrl,
 	status,
+	imageUrl,
 }) => {
 	const { isFavorite, toggleFavorite } = useFavorites(
 		id,
@@ -21,13 +21,11 @@ const PaintCard: React.FC<PaintCardProps> = ({
 		imageUrl,
 		status
 	);
-
 	const handleFavoriteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
 		event.stopPropagation();
 		toggleFavorite();
 	};
-
 	const handleImageError = (
 		event: React.SyntheticEvent<HTMLImageElement, Event>
 	) => {
@@ -44,21 +42,25 @@ const PaintCard: React.FC<PaintCardProps> = ({
 					onError={handleImageError}
 				/>
 				<div className={styles.details}>
-					<h3 className={styles.title}>{title}</h3>
-					<p className={styles.author}>{author}</p>
-					<p className={styles.status}>{status}</p>
+					<div className={styles['text-container']}>
+						<p className={styles.title}>{title}</p>
+						<p className={styles.author}>{author}</p>
+						<p className={styles.status}>{status}</p>
+					</div>
+					<button
+						className={styles.favoriteButton}
+						onClick={handleFavoriteClick}
+					>
+						<img
+							src={isFavorite ? filledBookmark : emptyFav}
+							alt="favorites"
+							className={styles.imgInRound}
+						/>
+					</button>
 				</div>
-
-				<button className={styles.favoriteButton} onClick={handleFavoriteClick}>
-					<img
-						src={isFavorite ? filledBookmark : emptyFav}
-						alt="favorites"
-						className={styles.imgInRound}
-					/>
-				</button>
 			</div>
 		</Link>
 	);
 };
 
-export default PaintCard;
+export default GalleryCard;

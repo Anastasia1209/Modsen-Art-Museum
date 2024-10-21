@@ -1,0 +1,26 @@
+.Error404 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.titleCode {
+	font-size: 6rem;
+	margin: 0;
+}
+
+.title {
+	font-size: 2rem;
+	margin: 10px 0;
+}
+
+.details {
+	font-size: 1.2rem;
+}
+
+a {
+	color: #ff8c00; /* Цвет ссылки */
+	text-decoration: none;
+}

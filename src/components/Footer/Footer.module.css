@@ -5,6 +5,20 @@
 	height: 100px;
 	padding: 10px 200px;
 	background-color: white;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+	.footer {
+		flex-direction: column;
+		padding: 10px;
+		height: auto;
+	}
+
+	.footer-item {
+		margin-bottom: 10px;
+	}
 }
 
 .footer-item {

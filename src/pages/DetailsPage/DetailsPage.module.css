@@ -1,17 +1,19 @@
-.MainPage {
+.DetailsPage {
 	background: #fafafa;
 }
+
 .content {
 	padding: 20px;
 	text-align: center;
 	color: #333;
 }
 
-.title {
+p {
 	font-size: 64px;
 	font-weight: 700;
 	margin-bottom: 10px;
 }
+
 .highlight {
 	color: #f17900;
 }

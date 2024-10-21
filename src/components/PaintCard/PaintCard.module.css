@@ -1,13 +1,19 @@
+.cardLink {
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
+}
+
 .card {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 8px; /* Уменьшены отступы */
+	padding: 8px;
 	background-color: #fff;
 	border: 1px solid #f0f1f1;
 	margin: 16px;
 	transition: box-shadow 0.3s ease;
-	width: 400px; /* Установите фиксированную ширину */
+	width: 400px;
 	height: 110px;
 }
 
@@ -16,16 +22,17 @@
 }
 
 .image {
-	width: 60px;
-	height: 60px;
+	width: 80px;
+	height: 80px;
 	object-fit: cover;
-	border-radius: 8px;
-	margin: 10px;
+	margin-left: 10px;
 }
 
 .details {
 	flex-grow: 1;
-	margin-left: 30px;
+	margin-left: 20px;
+	overflow: hidden;
+	width: 200px;
 }
 
 .title {
@@ -34,6 +41,9 @@
 	color: #333;
 	letter-spacing: -0.5px;
 	margin: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .author {
@@ -50,8 +60,17 @@
 }
 
 .favoriteButton {
-	background: none;
-	border: none;
+	background: #f9f9f9;
 	cursor: pointer;
 	padding: 5px;
+	top: 20px;
+	right: 20px;
+	width: 50px;
+	height: 50px;
+	border: none;
+	border-radius: 50%;
+}
+
+.imgInRound {
+	padding-top: 5px;
 }
