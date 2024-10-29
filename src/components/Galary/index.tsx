@@ -11,14 +11,7 @@ const Gallery: React.FC<GalleryProps> = ({ paintings }) => {
 			<p className={styles.title}>Our special gallery</p>
 			<div className={styles.cards}>
 				{paintings.map((painting) => (
-					<GalleryCard
-						key={painting.id}
-						title={painting.title}
-						author={painting.author}
-						status={painting.status}
-						imageUrl={painting.imageUrl}
-						id={painting.id}
-					/>
+					<GalleryCard key={painting.id} {...painting} />
 				))}
 			</div>
 		</div>

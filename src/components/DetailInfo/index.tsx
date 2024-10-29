@@ -30,10 +30,21 @@ const DetailsPaint: React.FC = () => {
 		return <div>Painting not found</div>;
 	}
 
+	const {
+		imageUrl,
+		title,
+		author,
+		years,
+		dimensions,
+		creditLine,
+		repository,
+		status,
+	} = paint;
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.imageContainer}>
-				<img src={paint.imageUrl} alt={paint.title} className={styles.image} />
+				<img src={imageUrl} alt={title} className={styles.image} />
 				<button className={styles.bookmarkButton} onClick={toggleFavorite}>
 					<img
 						src={isFavorite ? filledBookmark : emptyFav}
@@ -43,30 +54,30 @@ const DetailsPaint: React.FC = () => {
 				</button>
 			</div>
 			<div className={styles.details}>
-				<p className={styles.title}>{paint.title}</p>
-				<p className={styles.author}>{paint.author}</p>
-				<p className={styles.years}>{paint.years}</p>
+				<p className={styles.title}>{title}</p>
+				<p className={styles.author}>{author}</p>
+				<p className={styles.years}>{years}</p>
 
 				<div className={styles.overDetails}>
 					<p className={styles.overview}>Overview</p>
 					<p className={styles.commonDetails}>
 						<span className={styles.label}>Artist nationality: </span>
-						<span className={styles.value}>{paint.title}</span>
+						<span className={styles.value}>{title}</span>
 					</p>
 					<p className={styles.commonDetails}>
 						<span className={styles.label}>Dimensions: Sheet: </span>
-						<span className={styles.value}>{paint.dimensions}</span>
+						<span className={styles.value}>{dimensions}</span>
 					</p>
 					<p className={styles.commonDetails}>
 						<span className={styles.label}>Credit Line: </span>
-						<span className={styles.value}>{paint.creditLine}</span>
+						<span className={styles.value}>{creditLine}</span>
 					</p>
 					<p className={styles.commonDetails}>
 						<span className={styles.label}>Repository: </span>
-						<span className={styles.value}>{paint.repository}</span>
+						<span className={styles.value}>{repository}</span>
 					</p>
 					<p className={styles.commonDetails}>
-						<span className={styles.value}>{paint.status}</span>
+						<span className={styles.value}>{status}</span>
 					</p>
 				</div>
 			</div>
