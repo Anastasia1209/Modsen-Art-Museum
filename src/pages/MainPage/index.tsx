@@ -9,8 +9,8 @@ import Pagination from '@components/Pagination';
 
 import styles from './MainPage.module.css';
 
-import { getPaints } from '../../utils/api';
-import { Paint } from '@utils/types';
+import { getPaints } from 'api/api';
+import { Paint } from 'types/types';
 import ErrorBoundary from '@components/ErrorBoundary';
 
 const MainPage: React.FC = () => {

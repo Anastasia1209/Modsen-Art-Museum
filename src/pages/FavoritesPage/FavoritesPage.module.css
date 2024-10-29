@@ -1,20 +1,20 @@
 .FavoritesPage {
-	background: #fafafa;
+	background: var(--background-color);
 }
 .content {
-	padding: 20px;
+	padding: var(--padding);
 	text-align: center;
-	color: #333;
+	color: var(--text-color);
 }
 
 p,
 .highlight {
-	font-size: 64px;
-	font-weight: 700;
-	margin-bottom: 10px;
+	font-size: var(--font-size-large);
+	font-weight: var(--font-weight-bold);
+	margin-bottom: var(--margin-bottom);
 }
 .highlight {
-	color: #f17900;
+	color: var(--highlight-color);
 }
 
 .bookmarkContainer {

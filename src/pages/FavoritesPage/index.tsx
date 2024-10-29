@@ -5,8 +5,8 @@ import { Footer } from '@components/Footer';
 import PaintList from '@components/PaintList';
 
 import styles from './FavoritesPage.module.css';
-import { icon } from '@assets/assets';
-import { Paint } from '@utils/types';
+import { icon } from '@constants/assetsPaths';
+import { Paint } from 'types/types';
 import ErrorBoundary from '@components/ErrorBoundary';
 
 const FavoritesPage: React.FC = () => {

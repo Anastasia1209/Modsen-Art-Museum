@@ -1,0 +1,11 @@
+:root {
+	--background-color: #fafafa;
+	--text-color: #333;
+	--highlight-color: #f17900;
+
+	--padding: 20px;
+
+	--font-size-large: 64px;
+	--font-weight-bold: 700;
+	--margin-bottom: 10px;
+}

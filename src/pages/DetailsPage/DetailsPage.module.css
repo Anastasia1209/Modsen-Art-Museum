@@ -1,19 +1,19 @@
 .DetailsPage {
-	background: #fafafa;
+	background: var(--background-color);
 }
 
 .content {
-	padding: 20px;
+	padding: var(--padding);
 	text-align: center;
-	color: #333;
+	color: var(--text-color);
 }
 
-p {
+/* p {
 	font-size: 64px;
 	font-weight: 700;
 	margin-bottom: 10px;
-}
+} */
 
 .highlight {
-	color: #f17900;
+	color: var(--highlight-color);
 }
