@@ -1,10 +1,9 @@
 import React from 'react';
 
 import styles from './SearchBar.module.css';
-import { search } from '@assets/assets';
-import { SearchBarProps } from '@utils/types';
-
-import { useSearch } from '../../hooks/useSearch';
+import { search } from '@constants/assetsPaths';
+import { SearchBarProps } from 'types/types';
+import { useSearch } from '@hooks/useSearch';
 
 export const SearchBar: React.FC<SearchBarProps> = ({ setSearchResults }) => {
 	const {

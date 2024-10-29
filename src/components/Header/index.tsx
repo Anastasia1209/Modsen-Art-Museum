@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import styles from './Header.module.css';
-import { museum, home, bookmark, burger } from '@assets/assets';
+import { museum, home, bookmark, burger } from 'constants/assetsPaths';
 import { useToggle } from '../../hooks/useToggle';
 
 export const Header: React.FC = () => {

@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import styles from './DetailInfo.module.css';
-import { emptyFav, filledBookmark } from '@assets/assets';
-import { PaintFull } from '@utils/types';
-import { getPaintById } from '@utils/api';
-import useFavorites from '../../hooks/useFavorites';
+import { emptyFav, filledBookmark } from '@constants/assetsPaths';
+import useFavorites from '@hooks/useFavorites';
+import useFetchPaint from '@hooks/useFetchPaint';
 
 const DetailsPaint: React.FC = () => {
 	const { id } = useParams<{ id: string }>();
-	const [paint, setPaint] = useState<PaintFull | null>(null);
-	const [loading, setLoading] = useState<boolean>(true);
-	const [error, setError] = useState<string | null>(null);
-
+	const { paint, loading, error } = useFetchPaint(id);
 	const paintId = Number(id);
 	const { isFavorite, toggleFavorite } = useFavorites(
 		paintId,
@@ -21,24 +17,6 @@ const DetailsPaint: React.FC = () => {
 		paint?.imageUrl || '',
 		paint?.status || ''
 	);
-
-	useEffect(() => {
-		const fetchPaint = async () => {
-			if (id) {
-				try {
-					setLoading(true);
-					const fetchedPaint = await getPaintById(Number(id));
-					setPaint(fetchedPaint);
-					// eslint-disable-next-line @typescript-eslint/no-unused-vars
-				} catch (err) {
-					setError('Ошибка при загрузке данных');
-				} finally {
-					setLoading(false);
-				}
-			}
-		};
-		fetchPaint();
-	}, [id]);
 
 	if (loading) {
 		return <div>Loading...</div>;
