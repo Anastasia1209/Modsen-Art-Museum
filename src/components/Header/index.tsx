@@ -3,15 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 
 import styles from './Header.module.css';
 import { museum, home, bookmark, burger } from 'constants/assetsPaths';
-import { useToggle } from '../../hooks/useToggle';
+import { useToggle } from '@hooks/useToggle';
 
 export const Header: React.FC = () => {
 	const location = useLocation();
-	const { isOpen, toggle, close } = useToggle();
-
-	const handleMenuClose = () => {
-		close();
-	};
+	const { isOpen, toggle, ref } = useToggle();
 
 	return (
 		<header className={styles.header}>
@@ -23,13 +19,12 @@ export const Header: React.FC = () => {
 				<img src={burger} alt="Menu" />
 			</div>
 
-			<div className={`${styles.headerItems} ${isOpen ? styles.open : ''}`}>
+			<div
+				ref={ref}
+				className={`${styles.headerItems} ${isOpen ? styles.open : ''}`}
+			>
 				{location.pathname !== '/' && (
-					<Link
-						to="/"
-						className={styles['header-item']}
-						onClick={handleMenuClose}
-					>
+					<Link to="/" className={styles['header-item']} onClick={toggle}>
 						<img src={home} alt="home" className="logo" />
 						<span className={styles.title}>Home</span>
 					</Link>
