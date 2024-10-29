@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Paint } from '@utils/types';
-import { getPaintsSearch } from '../utils/api';
+import { Paint } from 'types/types';
+import { getPaintsSearch } from 'api/api';
 import { searchValidationSchema } from '../validation/validationSchema';
 import { ValidationError } from 'yup';
 
