@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './GalaryCard.module.css';
@@ -34,14 +33,14 @@ const GalleryCard: React.FC<PaintCardProps> = ({
 
 	return (
 		<Link to={`/paint/${id}`} className={styles.cardLink}>
-			<div className={styles.card}>
+			<article className={styles.card}>
 				<img
 					src={imageUrl || defaultImg}
 					alt={title}
 					className={styles.image}
 					onError={handleImageError}
 				/>
-				<div className={styles.details}>
+				<section className={styles.details}>
 					<div className={styles['text-container']}>
 						<p className={styles.title}>{title}</p>
 						<p className={styles.author}>{author}</p>
@@ -57,8 +56,8 @@ const GalleryCard: React.FC<PaintCardProps> = ({
 							className={styles.imgInRound}
 						/>
 					</button>
-				</div>
-			</div>
+				</section>
+			</article>
 		</Link>
 	);
 };

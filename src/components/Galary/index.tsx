@@ -1,12 +1,10 @@
-import React from 'react';
-
 import GalleryCard from '../GalaryCard';
 import styles from './Galary.module.css';
 import { GalleryProps } from 'types/types';
 
 const Gallery: React.FC<GalleryProps> = ({ paintings }) => {
 	return (
-		<div className={styles.gallery}>
+		<section className={styles.gallery}>
 			<p className={styles.highlight}>Topics for you</p>
 			<p className={styles.title}>Our special gallery</p>
 			<div className={styles.cards}>
@@ -14,7 +12,7 @@ const Gallery: React.FC<GalleryProps> = ({ paintings }) => {
 					<GalleryCard key={painting.id} {...painting} />
 				))}
 			</div>
-		</div>
+		</section>
 	);
 };
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import styles from './DetailInfo.module.css';
@@ -42,8 +41,8 @@ const DetailsPaint: React.FC = () => {
 	} = paint;
 
 	return (
-		<div className={styles.container}>
-			<div className={styles.imageContainer}>
+		<article className={styles.container}>
+			<figure className={styles.imageContainer}>
 				<img src={imageUrl} alt={title} className={styles.image} />
 				<button className={styles.bookmarkButton} onClick={toggleFavorite}>
 					<img
@@ -52,13 +51,13 @@ const DetailsPaint: React.FC = () => {
 						className={styles.imgInRound}
 					/>
 				</button>
-			</div>
-			<div className={styles.details}>
+			</figure>
+			<section className={styles.details}>
 				<p className={styles.title}>{title}</p>
 				<p className={styles.author}>{author}</p>
 				<p className={styles.years}>{years}</p>
 
-				<div className={styles.overDetails}>
+				<section className={styles.overDetails}>
 					<p className={styles.overview}>Overview</p>
 					<p className={styles.commonDetails}>
 						<span className={styles.label}>Artist nationality: </span>
@@ -79,9 +78,9 @@ const DetailsPaint: React.FC = () => {
 					<p className={styles.commonDetails}>
 						<span className={styles.value}>{status}</span>
 					</p>
-				</div>
-			</div>
-		</div>
+				</section>
+			</section>
+		</article>
 	);
 };
 

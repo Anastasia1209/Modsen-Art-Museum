@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import styles from './Header.module.css';
@@ -19,7 +18,7 @@ export const Header: React.FC = () => {
 				<img src={burger} alt="Menu" />
 			</div>
 
-			<div
+			<nav
 				ref={ref}
 				className={`${styles.headerItems} ${isOpen ? styles.open : ''}`}
 			>
@@ -33,7 +32,7 @@ export const Header: React.FC = () => {
 					<img src={bookmark} alt="bookmark" className="logo" />
 					<span className={styles.title}>Your favorites</span>{' '}
 				</Link>
-			</div>
+			</nav>
 		</header>
 	);
 };

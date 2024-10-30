@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './PaintCard.module.css';
@@ -36,18 +35,18 @@ const PaintCard: React.FC<PaintCardProps> = ({
 
 	return (
 		<Link to={`/paint/${id}`} className={styles.cardLink}>
-			<div className={styles.card}>
+			<article className={styles.card}>
 				<img
 					src={imageUrl || defaultImg}
 					alt={title}
 					className={styles.image}
 					onError={handleImageError}
 				/>
-				<div className={styles.details}>
+				<section className={styles.details}>
 					<h3 className={styles.title}>{title}</h3>
 					<p className={styles.author}>{author}</p>
 					<p className={styles.status}>{status}</p>
-				</div>
+				</section>
 
 				<button className={styles.favoriteButton} onClick={handleFavoriteClick}>
 					<img
@@ -56,7 +55,7 @@ const PaintCard: React.FC<PaintCardProps> = ({
 						className={styles.imgInRound}
 					/>
 				</button>
-			</div>
+			</article>
 		</Link>
 	);
 };

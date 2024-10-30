@@ -1,5 +1,3 @@
-import React from 'react';
-
 import PaintCard from '../PaintCard';
 import styles from './PaintList.module.css';
 import { PaintListProps } from 'types/types';
