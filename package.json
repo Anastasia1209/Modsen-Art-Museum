@@ -8,7 +8,6 @@
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
     "fetch-mock": "^11.1.5",
-    "history": "^5.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
@@ -53,6 +52,7 @@
     "customize-cra": "^1.0.0",
     "eslint": "^8.57.1",
     "eslint-plugin-react": "^7.37.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^15.11.0",
     "husky": "^9.1.6",
     "jest": "^27.5.1",
@@ -70,7 +70,6 @@
       "^@components/(.*)$": "<rootDir>/src/components/$1",
       "^@assets/(.*)$": "<rootDir>/src/assets/$1",
       "^@utils/(.*)$": "<rootDir>/src/utils/$1"
-
     }
   }
 }
