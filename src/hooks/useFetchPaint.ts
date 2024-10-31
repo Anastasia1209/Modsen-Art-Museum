@@ -1,6 +1,6 @@
+import { getPaintById } from 'api/api';
 import { useEffect, useState } from 'react';
 import { PaintFull } from 'types/types';
-import { getPaintById } from 'api/api';
 
 const useFetchPaint = (id: string | undefined) => {
 	const [paint, setPaint] = useState<PaintFull | null>(null);
@@ -15,7 +15,7 @@ const useFetchPaint = (id: string | undefined) => {
 					const fetchedPaint = await getPaintById(Number(id));
 					setPaint(fetchedPaint);
 				} catch {
-					setError('Ошибка при загрузке данных');
+					setError('Error loading data');
 				} finally {
 					setLoading(false);
 				}

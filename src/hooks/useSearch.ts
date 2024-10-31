@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Paint } from 'types/types';
 import { getPaintsSearch } from 'api/api';
-import { searchValidationSchema } from '../validation/validationSchema';
+import { useCallback,useEffect, useState } from 'react';
+import { Paint } from 'types/types';
 import { ValidationError } from 'yup';
+
+import { searchValidationSchema } from '../validation/validationSchema';
 
 export const useSearch = (setSearchResults: (results: Paint[]) => void) => {
 	const [query, setQuery] = useState('');

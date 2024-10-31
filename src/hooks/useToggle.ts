@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef  } from 'react';
+import { useEffect, useRef,useState  } from 'react';
 
 export const useToggle = (initialValue: boolean = false) => {
   const [isOpen, setIsOpen] = useState(initialValue);
@@ -7,7 +7,6 @@ export const useToggle = (initialValue: boolean = false) => {
   const toggle = () => setIsOpen((prev) => !prev);
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
-
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
