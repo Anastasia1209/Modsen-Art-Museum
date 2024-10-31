@@ -1,40 +1,24 @@
 import ErrorBoundary from '@components/ErrorBoundary';
-import { Footer } from '@components/Footer/index';
+import { Footer } from '@components/Footer';
 import Gallery from '@components/Galary';
-import { Header } from '@components/Header/index';
+import { Header } from '@components/Header';
 import Pagination from '@components/Pagination';
 import PaintList from '@components/PaintList';
 import { SearchBar } from '@components/SearchBar';
-import { pagesPerRange, paintingsPerPage } from '@constants/constants';
+import {
+	INITIAL_PAGE,
+	pagesPerRange,
+	paintingsPerPage,
+} from '@constants/constants';
+import useArtworks from '@hooks/useArtworks';
 import usePagination from '@hooks/usePagination';
-import { getPaints } from 'api/api';
-import { useEffect, useState } from 'react';
-import { Paint } from 'types/types';
+import { useState } from 'react';
 
 import styles from './MainPage.module.css';
 
 const MainPage: React.FC = () => {
-	const [artworks, setArtworks] = useState<Paint[]>([]);
-	const [searchResults, setSearchResults] = useState<Paint[] | null>(null);
-	const [currentPage, setCurrentPage] = useState<number>(1);
-
-	useEffect(() => {
-		const fetchArtworks = async () => {
-			try {
-				const data = await getPaints();
-				if (Array.isArray(data)) {
-					setArtworks(data);
-				} else {
-					console.error('Данные не являются массивом:', data);
-				}
-				// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			} catch (error) {
-				console.error('Ошибка при загрузке данных');
-			}
-		};
-
-		fetchArtworks();
-	}, []);
+	const { artworks, searchResults, setSearchResults } = useArtworks();
+	const [currentPage, setCurrentPage] = useState<number>(INITIAL_PAGE);
 
 	const paintingsToShow = searchResults ?? artworks;
 	const totalPages = Math.ceil(paintingsToShow.length / paintingsPerPage);
