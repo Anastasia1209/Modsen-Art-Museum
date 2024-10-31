@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
-
-import { Header } from '@components/Header';
-import { Footer } from '@components/Footer';
-import PaintList from '@components/PaintList';
-
-import styles from './FavoritesPage.module.css';
-import { icon } from '@constants/assetsPaths';
-import { Paint } from 'types/types';
 import ErrorBoundary from '@components/ErrorBoundary';
+import { Footer } from '@components/Footer';
+import { Header } from '@components/Header';
+import PaintList from '@components/PaintList';
+import { icon } from '@constants/assetsPaths';
+import { useEffect, useState } from 'react';
+import { Paint } from 'types/types';
+
+import localStorageManager from '../../api/localStorageManager';
+import styles from './FavoritesPage.module.css';
 
 const FavoritesPage: React.FC = () => {
 	const [favorites, setFavorites] = useState<Paint[]>([]);
 
 	useEffect(() => {
-		const storedFavorites = localStorage.getItem('favorites');
+		const storedFavorites = localStorageManager.getFavorites();
 		if (storedFavorites) {
-			setFavorites(JSON.parse(storedFavorites));
+			setFavorites(storedFavorites);
 		}
 	}, []);
 
@@ -23,15 +23,15 @@ const FavoritesPage: React.FC = () => {
 		<ErrorBoundary>
 			<div className={styles.FavoritesPage}>
 				<Header />
-				<div className={styles.content}>
+				<main className={styles.content} role="main">
 					<p>Here are your</p>
-					<div className={styles.bookmarkContainer}>
+					<section className={styles.bookmarkContainer}>
 						<div className={styles.bookmark}>
 							<img src={icon} alt="" />
 						</div>
 						<span className={styles.highlight}>Favorites</span>
-					</div>
-					<div className={styles.paintList}>
+					</section>
+					<section className={styles.paintList}>
 						{favorites.length > 0 ? (
 							<PaintList artworks={favorites} />
 						) : (
@@ -39,9 +39,8 @@ const FavoritesPage: React.FC = () => {
 								You don&apos;t have any favorites yet.
 							</p>
 						)}
-					</div>
-				</div>
-
+					</section>
+				</main>
 				<Footer />
 			</div>
 		</ErrorBoundary>
