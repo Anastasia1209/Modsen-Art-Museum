@@ -1,5 +1,6 @@
+import { getPaintById,getPaints, getPaintsSearch } from 'api/api';
 import fetchMock from 'fetch-mock';
-import { getPaints, getPaintsSearch, getPaintById } from 'api/api';
+
 import { API_BASE_URL, API_URL, IMAGE_BASE_URL } from '../constants/constants';
 
 describe('API Tests', () => {

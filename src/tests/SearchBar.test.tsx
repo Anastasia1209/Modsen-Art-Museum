@@ -1,7 +1,7 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
 import { SearchBar } from '@components/SearchBar/index';
 import { useSearch } from '@hooks/useSearch';
+import { fireEvent,render, screen } from '@testing-library/react';
+import React from 'react';
 
 jest.mock('../../hooks/useSearch', () => ({
 	useSearch: jest.fn(),
