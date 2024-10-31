@@ -1,10 +1,10 @@
+import defaultImg from '@assets/Image.svg';
+import { emptyFav, filledBookmark } from '@constants/assetsPaths';
+import useFavorites from '@hooks/useFavorites';
 import { Link } from 'react-router-dom';
+import { PaintCardProps } from 'types/types';
 
 import styles from './GalaryCard.module.css';
-import { PaintCardProps } from 'types/types';
-import { emptyFav, filledBookmark } from '@constants/assetsPaths';
-import defaultImg from '@assets/Image.svg';
-import useFavorites from '@hooks/useFavorites';
 
 const GalleryCard: React.FC<PaintCardProps> = ({
 	id,

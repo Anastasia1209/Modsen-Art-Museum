@@ -1,9 +1,9 @@
-import { useParams } from 'react-router-dom';
-
-import styles from './DetailInfo.module.css';
 import { emptyFav, filledBookmark } from '@constants/assetsPaths';
 import useFavorites from '@hooks/useFavorites';
 import useFetchPaint from '@hooks/useFetchPaint';
+import { useParams } from 'react-router-dom';
+
+import styles from './DetailInfo.module.css';
 
 const DetailsPaint: React.FC = () => {
 	const { id } = useParams<{ id: string }>();

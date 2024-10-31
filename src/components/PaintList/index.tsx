@@ -1,6 +1,7 @@
+import { PaintListProps } from 'types/types';
+
 import PaintCard from '../PaintCard';
 import styles from './PaintList.module.css';
-import { PaintListProps } from 'types/types';
 
 const PaintList: React.FC<PaintListProps> = ({ artworks }) => {
 	return (

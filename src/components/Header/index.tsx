@@ -1,8 +1,8 @@
+import { useToggle } from '@hooks/useToggle';
+import { bookmark, burger,home, museum } from 'constants/assetsPaths';
 import { Link, useLocation } from 'react-router-dom';
 
 import styles from './Header.module.css';
-import { museum, home, bookmark, burger } from 'constants/assetsPaths';
-import { useToggle } from '@hooks/useToggle';
 
 export const Header: React.FC = () => {
 	const location = useLocation();

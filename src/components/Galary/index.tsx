@@ -1,6 +1,7 @@
+import { GalleryProps } from 'types/types';
+
 import GalleryCard from '../GalaryCard';
 import styles from './Galary.module.css';
-import { GalleryProps } from 'types/types';
 
 const Gallery: React.FC<GalleryProps> = ({ paintings }) => {
 	return (
