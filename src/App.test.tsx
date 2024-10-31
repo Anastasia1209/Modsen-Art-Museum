@@ -1,10 +1,11 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
+import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import MainPage from './pages/MainPage/index';
+
 import DetailsPage from './pages/DetailsPage';
-import FavoritesPage from './pages/FavoritesPage';
 import Error404 from './pages/Error404';
+import FavoritesPage from './pages/FavoritesPage';
+import MainPage from './pages/MainPage/index';
 
 test('renders MainPage component', () => {
 	render(

@@ -60,6 +60,9 @@ export interface PaginationProps {
 	totalPages: number;
 	pagesPerRange: number;
 	onPageChange: (pageNumber: number) => void;
+  getPageNumbers: () => number[];  
+  handleNextRange: () => void; 
+  handlePrevRange: () => void;
 }
 
 export interface Artwork {
