@@ -23,7 +23,9 @@
     "paths": {
       "@components/*": ["components/*"],
       "@assets/*": ["assets/*"],
-      "@utils/*": ["utils/*"],
+      "@types/*": ["types/*"],
+      "@constants/*": ["constants/*"],
+      "@hooks/*": ["hooks/*"],
     }
   },
   "include": [

@@ -1,7 +1,6 @@
-import React from 'react';
+import { modsen,museumBlack } from '@constants/assetsPaths';
 
 import styles from './Footer.module.css';
-import { museumBlack, modsen } from '@assets/assets';
 
 export const Footer: React.FC = () => {
 	return (

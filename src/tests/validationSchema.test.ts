@@ -1,4 +1,4 @@
-import { searchValidationSchema } from './validationSchema';
+import { searchValidationSchema } from '../validation/validationSchema';
 
 describe('searchValidationSchema', () => {
   test('validates successfully with a valid query', async () => {

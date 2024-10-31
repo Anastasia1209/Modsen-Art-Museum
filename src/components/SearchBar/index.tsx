@@ -1,10 +1,8 @@
-import React from 'react';
+import { search } from '@constants/assetsPaths';
+import { useSearch } from '@hooks/useSearch';
+import { SearchBarProps } from 'types/types';
 
 import styles from './SearchBar.module.css';
-import { search } from '@assets/assets';
-import { SearchBarProps } from '@utils/types';
-
-import { useSearch } from '../../hooks/useSearch';
 
 export const SearchBar: React.FC<SearchBarProps> = ({ setSearchResults }) => {
 	const {
@@ -18,9 +16,14 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearchResults }) => {
 		handleSearch,
 	} = useSearch(setSearchResults);
 
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		handleSearch();
+	};
+
 	return (
-		<div className={styles.searchBarContainer}>
-			<div className={styles.searchBox}>
+		<form className={styles.searchBarContainer} onSubmit={handleSubmit}>
+			<fieldset className={styles.searchBox}>
 				<input
 					type="text"
 					placeholder="Search Art, Artist, Work..."
@@ -28,12 +31,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearchResults }) => {
 					onChange={(e) => setQuery(e.target.value)}
 					className={styles.input}
 				/>
-				<button onClick={handleSearch} className={styles.searchButton}>
+				<button type="submit" className={styles.searchButton}>
 					<img src={search} alt="Search Icon" className={styles.icon} />
 				</button>
-			</div>
+			</fieldset>
 
-			<div className={styles.sortContainer}>
+			<fieldset className={styles.sortContainer}>
 				<label className={styles.sortLabel} htmlFor="sort">
 					Sort by:
 				</label>
@@ -47,13 +50,13 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearchResults }) => {
 					<option value="title">Title</option>
 					<option value="author">Author</option>
 				</select>
-			</div>
+			</fieldset>
 
 			<div className={styles.messages}>
 				{loading && <p className={styles.loading}>Loading...</p>}
 				{validationError && <p className={styles.error}>{validationError}</p>}
 				{error && <p className={styles.error}>{error}</p>}
 			</div>
-		</div>
+		</form>
 	);
 };

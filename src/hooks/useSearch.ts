@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { Paint } from '@utils/types';
-import { getPaintsSearch } from '../utils/api';
-import { searchValidationSchema } from '../validation/validationSchema';
+import { getPaintsSearch } from 'api/api';
+import { useCallback,useEffect, useState } from 'react';
+import { Paint } from 'types/types';
 import { ValidationError } from 'yup';
+
+import { searchValidationSchema } from '../validation/validationSchema';
 
 export const useSearch = (setSearchResults: (results: Paint[]) => void) => {
 	const [query, setQuery] = useState('');
@@ -11,7 +12,20 @@ export const useSearch = (setSearchResults: (results: Paint[]) => void) => {
 	const [validationError, setValidationError] = useState<string | null>(null);
 	const [sortCriterion, setSortCriterion] = useState('default');
 
-	const handleSearch = async () => {
+	const sortData = useCallback((data: Paint[]) => {
+		return [...data].sort((a, b) => {
+			switch (sortCriterion) {
+				case 'title':
+					return a.title.localeCompare(b.title);
+				case 'author':
+					return a.author.localeCompare(b.author);
+				default:
+					return 0;
+			}
+		});
+	}, [sortCriterion]);
+
+	const handleSearch = useCallback(async () => {
 		if (!query) return;
 
 		try {
@@ -26,25 +40,20 @@ export const useSearch = (setSearchResults: (results: Paint[]) => void) => {
 			if (error instanceof ValidationError) {
 				setValidationError(error.message);
 			} else {
-				setError('Ошибка при выполнении поиска');
+				setError('Error performing search');
 			}
 		} finally {
 			setLoading(false);
 		}
-	};
+	},  [query, setSearchResults, sortData]);
 
-	const sortData = (data: Paint[]) => {
-		return [...data].sort((a, b) => {
-			switch (sortCriterion) {
-				case 'title':
-					return a.title.localeCompare(b.title);
-				case 'author':
-					return a.author.localeCompare(b.author);
-				default:
-					return 0;
-			}
-		});
-	};
+	useEffect(() => {
+		const delayDebounce = setTimeout(() => {
+			handleSearch();
+		}, 500); 
+
+		return () => clearTimeout(delayDebounce);
+	}, [query, handleSearch]);
 
 	return {
 		query,

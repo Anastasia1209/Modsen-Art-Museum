@@ -1,11 +1,10 @@
-import React from 'react';
+import defaultImg from '@assets/Image.svg';
+import { emptyFav, filledBookmark } from '@constants/assetsPaths';
+import useFavorites from '@hooks/useFavorites';
 import { Link } from 'react-router-dom';
+import { PaintCardProps } from 'types/types';
 
 import styles from './GalaryCard.module.css';
-import { PaintCardProps } from '@utils/types';
-import { emptyFav, filledBookmark } from '@assets/assets';
-import defaultImg from '@assets/Image.svg';
-import useFavorites from '../../hooks/useFavorites';
 
 const GalleryCard: React.FC<PaintCardProps> = ({
 	id,
@@ -34,14 +33,14 @@ const GalleryCard: React.FC<PaintCardProps> = ({
 
 	return (
 		<Link to={`/paint/${id}`} className={styles.cardLink}>
-			<div className={styles.card}>
+			<article className={styles.card}>
 				<img
 					src={imageUrl || defaultImg}
 					alt={title}
 					className={styles.image}
 					onError={handleImageError}
 				/>
-				<div className={styles.details}>
+				<section className={styles.details}>
 					<div className={styles['text-container']}>
 						<p className={styles.title}>{title}</p>
 						<p className={styles.author}>{author}</p>
@@ -57,8 +56,8 @@ const GalleryCard: React.FC<PaintCardProps> = ({
 							className={styles.imgInRound}
 						/>
 					</button>
-				</div>
-			</div>
+				</section>
+			</article>
 		</Link>
 	);
 };
