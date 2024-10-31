@@ -1,25 +1,22 @@
-import React, { useState, useEffect } from 'react';
-
-import { Header } from '@components/Header/index';
+import ErrorBoundary from '@components/ErrorBoundary';
 import { Footer } from '@components/Footer/index';
-import { SearchBar } from '@components/SearchBar';
-import PaintList from '@components/PaintList';
 import Gallery from '@components/Galary';
+import { Header } from '@components/Header/index';
 import Pagination from '@components/Pagination';
+import PaintList from '@components/PaintList';
+import { SearchBar } from '@components/SearchBar';
+import { pagesPerRange, paintingsPerPage } from '@constants/constants';
+import usePagination from '@hooks/usePagination';
+import { getPaints } from 'api/api';
+import { useEffect, useState } from 'react';
+import { Paint } from 'types/types';
 
 import styles from './MainPage.module.css';
-
-import { getPaints } from 'api/api';
-import { Paint } from 'types/types';
-import ErrorBoundary from '@components/ErrorBoundary';
 
 const MainPage: React.FC = () => {
 	const [artworks, setArtworks] = useState<Paint[]>([]);
 	const [searchResults, setSearchResults] = useState<Paint[] | null>(null);
 	const [currentPage, setCurrentPage] = useState<number>(1);
-
-	const paintingsPerPage = 2;
-	const pagesPerRange = 4;
 
 	useEffect(() => {
 		const fetchArtworks = async () => {
@@ -41,6 +38,11 @@ const MainPage: React.FC = () => {
 
 	const paintingsToShow = searchResults ?? artworks;
 	const totalPages = Math.ceil(paintingsToShow.length / paintingsPerPage);
+
+	const { getPageNumbers, handleNextRange, handlePrevRange } = usePagination({
+		totalPages,
+		pagesPerRange,
+	});
 
 	const handlePageChange = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
@@ -70,10 +72,11 @@ const MainPage: React.FC = () => {
 					totalPages={totalPages}
 					pagesPerRange={pagesPerRange}
 					onPageChange={handlePageChange}
+					getPageNumbers={getPageNumbers}
+					handleNextRange={handleNextRange}
+					handlePrevRange={handlePrevRange}
 				/>
-
 				<PaintList artworks={artworks} />
-
 				<Footer />
 			</div>
 		</ErrorBoundary>

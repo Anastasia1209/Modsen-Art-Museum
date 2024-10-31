@@ -1,27 +1,30 @@
-import styles from './Pagination.module.css';
+//import usePagination from '@hooks/usePagination';
+import { INITIAL_PAGE } from '@constants/constants';
 import { PaginationProps } from 'types/types';
-import usePagination from '@hooks/usePagination';
+
+import styles from './Pagination.module.css';
 
 const Pagination: React.FC<PaginationProps> = ({
 	currentPage,
 	totalPages,
-	pagesPerRange,
 	onPageChange,
+	getPageNumbers,
+	handleNextRange,
+	handlePrevRange,
 }) => {
-	const { currentRange, getPageNumbers, handleNextRange, handlePrevRange } =
-		usePagination({
-			totalPages,
-			pagesPerRange,
-		});
+	const pageNumbers = getPageNumbers();
+	const isFirstRange = pageNumbers[0] === INITIAL_PAGE;
+	const isLastRange = pageNumbers[pageNumbers.length - 1] === totalPages;
 
 	return (
 		<div className={styles.pagination}>
-			{currentRange > 1 && (
+			{!isFirstRange && (
 				<button className={styles.prevButton} onClick={handlePrevRange}>
 					&lt;
 				</button>
 			)}
-			{getPageNumbers().map((pageNumber) => (
+
+			{pageNumbers.map((pageNumber) => (
 				<button
 					key={pageNumber}
 					className={`${styles.pageButton} ${pageNumber === currentPage ? styles.active : ''}`}
@@ -30,7 +33,8 @@ const Pagination: React.FC<PaginationProps> = ({
 					{pageNumber}
 				</button>
 			))}
-			{currentRange + pagesPerRange <= totalPages && (
+
+			{!isLastRange && (
 				<button className={styles.nextButton} onClick={handleNextRange}>
 					&gt;
 				</button>
